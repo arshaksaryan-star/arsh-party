@@ -1,0 +1,40 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 0 20px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 16px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    transform 0.2s var(--ease-out),
+    background-color 0.2s var(--ease-out),
+    border-color 0.2s var(--ease-out);
+}
+
+.button:active {
+  transform: scale(0.96);
+}
+
+.solid {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.solid:hover {
+  background: color-mix(in srgb, var(--ink) 82%, var(--accent));
+}
+
+.ghost {
+  border: 1px solid var(--line);
+  color: var(--ink);
+  background: transparent;
+}
+
+.ghost:hover {
+  border-color: var(--ink);
+}

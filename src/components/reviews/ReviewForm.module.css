@@ -1,0 +1,320 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: clamp(18px, 3vw, 26px);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: var(--paper);
+}
+
+.rating {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 600;
+  padding: 0;
+}
+
+.stars {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.starLabel {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  cursor: pointer;
+  border-radius: 12px;
+}
+
+.starLabel:has(input:focus-visible) {
+  outline: 2px solid var(--ink);
+  outline-offset: 1px;
+}
+
+.star {
+  width: 38px;
+  height: 38px;
+  transition: transform 0.25s var(--ease-spring);
+}
+
+.star polygon {
+  fill: transparent;
+  stroke: var(--muted);
+  stroke-width: 5;
+  stroke-linejoin: round;
+  transition:
+    fill 0.2s ease,
+    stroke 0.2s ease;
+}
+
+/* звезда загорается цветом своего направления */
+.starOn polygon {
+  fill: var(--c);
+  stroke: var(--c);
+}
+
+.starLabel:hover .star {
+  transform: scale(1.15) rotate(-8deg);
+}
+
+.ratingText {
+  margin-left: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.input {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+  font-size: 16px;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--ink);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--ink) 12%, transparent);
+}
+
+.input[aria-invalid="true"] {
+  border-color: var(--c-red);
+}
+
+.textarea {
+  min-height: 130px;
+  resize: vertical;
+}
+
+.trap {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.consent {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 14px;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.consent input {
+  width: 20px;
+  height: 20px;
+  margin-top: 1px;
+  flex: none;
+  accent-color: #000000;
+}
+
+.error {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--c-red);
+}
+
+.serverError {
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--c-red) 10%, var(--paper));
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.submit {
+  align-self: flex-start;
+  min-height: 52px;
+  padding: 0 28px;
+  border: 0;
+  border-radius: 999px;
+  background: #000000;
+  color: #ffffff;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s var(--ease-out);
+}
+
+.submit:active {
+  transform: scale(0.97);
+}
+
+.submit:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.done {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 32px 20px;
+  border-radius: 22px;
+  background: #000000;
+  color: #ffffff;
+  text-align: center;
+}
+
+.doneStar {
+  width: 56px;
+  height: 56px;
+  animation: pop 0.6s var(--ease-spring);
+}
+
+.doneStar polygon {
+  fill: var(--c-red);
+}
+
+.doneTitle {
+  font-family: var(--font-display-stack);
+  font-weight: 800;
+  font-size: 22px;
+}
+
+.doneText {
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 36ch;
+}
+
+@keyframes pop {
+  from {
+    transform: scale(0.3) rotate(-30deg);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 400px) {
+  .starLabel {
+    width: 44px;
+    height: 44px;
+  }
+
+  .star {
+    width: 34px;
+    height: 34px;
+  }
+
+  .submit {
+    align-self: stretch;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .star,
+  .doneStar {
+    transition: none;
+    animation: none;
+  }
+}
+
+/* ───── файлы ───── */
+
+.files {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.fileItem {
+  position: relative;
+  width: 84px;
+  height: 84px;
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--line);
+}
+
+.fileThumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.fileBadge {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+}
+
+.fileRemove {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 28px;
+  height: 28px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.72);
+  color: #ffffff;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.attach {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 18px;
+  border: 1.5px dashed var(--muted);
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.attach:hover,
+.attach:has(input:focus-visible) {
+  border-color: var(--ink);
+  border-style: solid;
+}
+
+.hint {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.consent a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}

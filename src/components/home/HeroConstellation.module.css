@@ -1,0 +1,199 @@
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding-top: clamp(32px, 7vw, 88px);
+  padding-bottom: clamp(48px, 8vw, 104px);
+}
+
+/* контент над слоем искр */
+.inner {
+  position: relative;
+  z-index: 1;
+}
+
+.title {
+  margin: 0;
+  line-height: 0;
+}
+
+/* главный логотип: звезда внутри перекрашивается при выборе направления */
+.logo {
+  width: min(100%, 760px);
+  height: auto;
+  filter: drop-shadow(0 18px 30px rgba(0, 0, 0, 0.12));
+  animation: logoIn 0.6s var(--ease-spring) both;
+}
+
+@keyframes logoIn {
+  from {
+    transform: rotate(-4deg) scale(0.94);
+  }
+  to {
+    transform: none;
+  }
+}
+
+.lead {
+  margin-top: clamp(28px, 4vw, 40px);
+  font-size: clamp(18px, 2vw, 22px);
+  color: var(--muted);
+  max-width: 34ch;
+}
+
+.sky {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+  max-width: 720px;
+}
+
+.starButton {
+  appearance: none;
+  min-height: 92px;
+  padding: 14px 4px 12px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--paper);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition:
+    transform 0.2s var(--ease-out),
+    border-color 0.2s var(--ease-out),
+    background-color 0.2s var(--ease-out);
+}
+
+.starButton:hover {
+  border-color: color-mix(in srgb, var(--c) 50%, var(--line));
+}
+
+.starButton:active {
+  transform: scale(0.95);
+}
+
+.starButton[aria-pressed="true"] {
+  border-color: var(--c);
+  background: color-mix(in srgb, var(--c) 10%, var(--paper));
+}
+
+.starIcon {
+  width: 38px;
+  height: 38px;
+  transition: transform 0.3s var(--ease-spring);
+}
+
+.starButton:hover .starIcon {
+  transform: rotate(-14deg) scale(1.08);
+}
+
+.starButton[aria-pressed="true"] .starIcon {
+  transform: rotate(-14deg) scale(1.16);
+}
+
+.starLabel {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.detail {
+  margin-top: 20px;
+  max-width: 720px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 10px 20px;
+  min-height: 3.4em;
+}
+
+.detailText {
+  flex: 1 1 320px;
+  font-size: 18px;
+  animation: rise 0.28s var(--ease-out);
+}
+
+.detailText b {
+  font-weight: 600;
+}
+
+.detailLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 3px solid var(--accent);
+  transition: border-color 0.3s var(--ease-out);
+}
+
+.detailArrow {
+  transition: transform 0.2s var(--ease-out);
+}
+
+.detailLink:hover .detailArrow {
+  transform: translateX(4px);
+}
+
+@keyframes rise {
+  from {
+    opacity: 0.2;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 400px) {
+  .starLabel {
+    font-size: 11px;
+    letter-spacing: -0.01em;
+  }
+}
+
+/* Широкий экран: логотип слева, выбор звезды справа */
+@media (min-width: 1100px) {
+  .inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    grid-template-rows: auto auto auto;
+    column-gap: 64px;
+    align-items: center;
+  }
+
+  .title {
+    grid-row: 1 / span 3;
+  }
+
+  .lead {
+    margin-top: 0;
+    align-self: end;
+  }
+
+  .sky,
+  .detail {
+    max-width: none;
+  }
+
+  .detail {
+    align-self: start;
+  }
+}
+
+@media (min-width: 640px) {
+  .starIcon {
+    width: 46px;
+    height: 46px;
+  }
+
+  .starLabel {
+    font-size: 14px;
+  }
+}

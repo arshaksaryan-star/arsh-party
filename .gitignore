@@ -1,0 +1,25 @@
+# зависимости
+/node_modules
+
+# сборка Next.js
+/.next/
+/out/
+next-env.d.ts
+*.tsbuildinfo
+
+# ключи и локальные настройки
+.env
+.env.local
+.env.*.local
+
+# системное
+.DS_Store
+npm-debug.log*
+.vercel
+
+# клиентская база — только для сервера
+/private/
+
+# локальные логи и кэш
+.env*.local
+*.log

@@ -1,0 +1,260 @@
+/* Калькулятор праздника */
+.calc {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: clamp(18px, 4vw, 28px);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: var(--paper);
+}
+
+.title {
+  font-family: var(--font-display-stack);
+  font-weight: 800;
+  font-size: clamp(22px, 3.4vw, 32px);
+  line-height: 1.1;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.label {
+  font-weight: 700;
+}
+
+.label b {
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.muted {
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.hint {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.hint a {
+  color: inherit;
+  font-weight: 600;
+}
+
+.stepper {
+  display: grid;
+  grid-template-columns: 44px 1fr 44px;
+  gap: 10px;
+  align-items: center;
+}
+
+.stepper button {
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--paper-2);
+  color: var(--ink);
+  font-size: 22px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.stepper input,
+.range {
+  width: 100%;
+  accent-color: var(--accent);
+  height: 28px;
+}
+
+/* Доли мяса: ползунок на каждое выбранное блюдо, в сумме всегда 100%. */
+.shares {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 4px;
+  padding: 12px 14px 8px;
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--accent) 7%, var(--paper));
+}
+
+.sharesHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.sharesReset {
+  padding: 4px 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+  font-size: 12px;
+  text-transform: none;
+  letter-spacing: 0;
+  cursor: pointer;
+}
+
+.share {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.shareName {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.shareName span {
+  flex: none;
+  font-weight: 400;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.shareName b {
+  color: var(--ink);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+}
+
+.chip span {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.chip[aria-pressed="true"] {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, var(--paper));
+}
+
+.switch {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.switch input {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--accent);
+  flex: none;
+}
+
+.result {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px;
+  border-radius: 18px;
+  background: var(--paper-2);
+}
+
+.lines {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.lines li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 15px;
+}
+
+.lines b {
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.total {
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+  font-size: 18px;
+}
+
+.total b {
+  font-family: var(--font-display-stack);
+  font-size: 24px;
+}
+
+.submit {
+  min-height: 54px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--on-accent);
+  font: inherit;
+  font-weight: 800;
+  font-size: 17px;
+  cursor: pointer;
+}
+
+.warn {
+  color: var(--c-red);
+  font-weight: 600;
+}
+
+.opener {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 16px 18px;
+  border: 1px dashed var(--accent);
+  border-radius: 20px;
+  background: color-mix(in srgb, var(--accent) 8%, var(--paper));
+  color: var(--ink);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.openerIcon {
+  font-size: 28px;
+}

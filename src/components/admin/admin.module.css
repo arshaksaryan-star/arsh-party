@@ -1,0 +1,585 @@
+/* Админка: спокойный рабочий интерфейс в фирменной гамме. */
+
+.shell {
+  min-height: 100dvh;
+  background: var(--paper-2);
+}
+
+.bar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  padding-top: env(safe-area-inset-top, 0px);
+  background: #000000;
+  color: #ffffff;
+}
+
+.barInner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 60px;
+}
+
+.barLogo {
+  height: 34px;
+  width: auto;
+}
+
+.barTitle {
+  font-family: var(--font-display-stack);
+  font-weight: 800;
+  font-size: 15px;
+  letter-spacing: 0.02em;
+}
+
+.barSpacer {
+  flex: 1;
+}
+
+.barLink {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.barLink:hover {
+  color: #ffffff;
+}
+
+.barButton {
+  min-height: 36px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: transparent;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.barButton:hover {
+  border-color: #ffffff;
+}
+
+.tabs {
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-bottom: 10px;
+}
+
+.tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 0 14px;
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.tab:hover {
+  color: #ffffff;
+}
+
+.tab[aria-current="page"] {
+  background: #ffffff;
+  color: #000000;
+}
+
+.main {
+  padding-block: 28px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.pageHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px 24px;
+}
+
+.pageTitle {
+  font-weight: 800;
+  font-size: clamp(24px, 4vw, 34px);
+  line-height: 1.1;
+}
+
+.pageHint {
+  color: var(--muted);
+  max-width: 60ch;
+  font-size: 15px;
+}
+
+.card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: clamp(16px, 3vw, 24px);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+
+.cardTitle {
+  font-family: var(--font-body-stack);
+  font-weight: 700;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cardStar {
+  width: 22px;
+  height: 22px;
+  flex: none;
+}
+
+.grid2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.hint {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.input {
+  width: 100%;
+  min-height: 46px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+  font-size: 16px;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--ink);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--ink) 12%, transparent);
+}
+
+.textarea {
+  min-height: 84px;
+  resize: vertical;
+}
+
+.check {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.check input {
+  width: 20px;
+  height: 20px;
+  accent-color: #000000;
+}
+
+.actions {
+  position: sticky;
+  bottom: 0;
+  z-index: 5;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 0 calc(14px + env(safe-area-inset-bottom, 0px));
+  background: linear-gradient(to top, var(--paper-2) 70%, transparent);
+}
+
+.inlineActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 0 22px;
+  border: 0;
+  border-radius: 999px;
+  background: #000000;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s var(--ease-out);
+}
+
+.primary:active {
+  transform: scale(0.97);
+}
+
+.primary:disabled {
+  opacity: 0.55;
+  cursor: progress;
+}
+
+.secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 16px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.secondary:hover {
+  border-color: var(--ink);
+}
+
+/* используется вместе с .secondary */
+.danger {
+  color: #c40000;
+  border-color: color-mix(in srgb, #c40000 35%, var(--line));
+}
+
+.message {
+  font-size: 15px;
+  font-weight: 600;
+  padding: 10px 14px;
+  border-radius: 12px;
+}
+
+.messageOk {
+  background: color-mix(in srgb, #33cc33 16%, var(--paper));
+}
+
+.messageError {
+  background: color-mix(in srgb, #ff0000 12%, var(--paper));
+}
+
+.notice {
+  padding: 16px 18px;
+  border-radius: 14px;
+  border: 1px dashed var(--ink);
+  background: var(--paper);
+  font-size: 15px;
+}
+
+.notice code {
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 14px;
+  background: var(--paper-2);
+  padding: 1px 6px;
+  border-radius: 6px;
+}
+
+/* ───── Меню ───── */
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.category {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.categoryTitle {
+  font-family: var(--font-body-stack);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 64px 1fr auto;
+  align-items: center;
+  gap: 14px;
+  padding: 10px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+}
+
+.thumb {
+  width: 64px;
+  height: 64px;
+  border-radius: 12px;
+  object-fit: cover;
+  background: var(--paper-2);
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+  font-size: 12px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.itemText {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.itemTitle {
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.itemMeta {
+  font-size: 14px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.badgeOff {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--paper-2);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.photoField {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 14px;
+  align-items: center;
+}
+
+.photoPreview {
+  width: 96px;
+  height: 96px;
+  border-radius: 14px;
+  object-fit: cover;
+  background: var(--paper-2);
+}
+
+.empty {
+  padding: 28px;
+  text-align: center;
+  color: var(--muted);
+  background: var(--paper);
+  border: 1px dashed var(--line);
+  border-radius: 16px;
+}
+
+/* ───── Вход ───── */
+
+.loginWrap {
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: 24px max(20px, env(safe-area-inset-right, 0px)) 24px max(20px, env(safe-area-inset-left, 0px));
+  background: #000000;
+}
+
+.loginCard {
+  width: min(100%, 400px);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 28px;
+  border-radius: 22px;
+  background: var(--paper);
+}
+
+.loginLogo {
+  width: 160px;
+  height: auto;
+}
+
+.loginTitle {
+  font-weight: 800;
+  font-size: 24px;
+}
+
+@media (max-width: 520px) {
+  .barInner {
+    gap: 10px;
+  }
+
+  .barTitle {
+    display: none;
+  }
+}
+
+@media (min-width: 720px) {
+  .grid2 {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .wide {
+    grid-column: 1 / -1;
+  }
+}
+
+/* ───── Отзывы с сайта ───── */
+
+.reviewHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 6px 16px;
+}
+
+.reviewStars {
+  font-size: 20px;
+  letter-spacing: 2px;
+  color: #ff0000;
+}
+
+.reviewStarsOff {
+  color: var(--line);
+}
+
+.reviewText {
+  white-space: pre-line;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.reviewMedia {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.reviewMediaItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ───── Страница направления в форме «Направления» ───── */
+
+.pageDetails {
+  border-top: 1px solid var(--line);
+  padding-top: 12px;
+}
+
+.pageSummary {
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 15px;
+  padding: 6px 0 14px;
+}
+
+.textareaTall {
+  min-height: 150px;
+  resize: vertical;
+}
+
+/* ───── Праздники: фото ───── */
+
+.photoGrid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+}
+
+.photoCell {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.photoCellImg {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 12px;
+  background: var(--paper-2);
+}
+
+.coverMark {
+  position: absolute;
+  left: 8px;
+  top: 8px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: #000000;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.photoCellActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.photoCellActions .secondary {
+  min-height: 36px;
+  padding: 0 12px;
+  font-size: 13px;
+}
+
+/* Заказы и заявки */
+.requestList {
+  margin: 4px 0 6px;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}

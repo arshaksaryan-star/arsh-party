@@ -1,0 +1,356 @@
+/* Тайная звезда /zvezda: тёмная страница «для своих» */
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(40px, 7vw, 80px);
+  padding-top: clamp(24px, 5vw, 56px);
+  padding-bottom: clamp(56px, 9vw, 112px);
+}
+
+.hero {
+  position: relative;
+  padding: clamp(28px, 6vw, 56px) clamp(20px, 5vw, 48px);
+  border-radius: 28px;
+  background: #050505;
+  color: #ffffff;
+  overflow: hidden;
+}
+
+.heroStar {
+  position: absolute;
+  right: -40px;
+  top: -40px;
+  width: clamp(160px, 30vw, 280px);
+  height: auto;
+  color: var(--c-orange);
+  opacity: 0.9;
+  filter: drop-shadow(0 0 40px rgba(255, 102, 0, 0.55));
+  animation: twinkle 4.5s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    transform: rotate(0deg) scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: rotate(8deg) scale(1.06);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heroStar {
+    animation: none;
+  }
+}
+
+.heroEyebrow {
+  position: relative;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.heroTitle {
+  position: relative;
+  margin-top: 10px;
+  font-family: var(--font-display-stack);
+  font-weight: 800;
+  font-size: clamp(36px, 7vw, 72px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  max-width: 12ch;
+}
+
+.heroText {
+  position: relative;
+  margin-top: 16px;
+  max-width: 46ch;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.jump {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 24px;
+}
+
+.jump a {
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  scroll-margin-top: 90px;
+}
+
+.sectionTitle {
+  font-family: var(--font-display-stack);
+  font-weight: 800;
+  font-size: clamp(28px, 4.6vw, 44px);
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+}
+
+.sectionLead {
+  max-width: 60ch;
+  font-size: 18px;
+  color: var(--muted);
+}
+
+.facts {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.fact {
+  padding: 18px;
+  border-radius: 20px;
+  background: var(--paper-2);
+}
+
+.factBig {
+  display: block;
+  font-family: var(--font-display-stack);
+  font-weight: 800;
+  font-size: 30px;
+  line-height: 1.1;
+  color: var(--accent);
+}
+
+.fact p {
+  margin-top: 6px;
+  color: var(--muted);
+}
+
+.offers {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+
+.offerCard {
+  padding: 20px;
+  border-radius: 20px;
+  border: 1px solid var(--line);
+}
+
+.offerCard h3 {
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.offerCard p {
+  margin-top: 6px;
+  color: var(--muted);
+}
+
+.until {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.perks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.perks li {
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent) 14%, var(--paper));
+  font-weight: 600;
+}
+
+.rulesLink {
+  font-weight: 600;
+  color: inherit;
+}
+
+/* Вход по паролю */
+
+.gate {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 420px;
+  margin: 0 auto;
+  padding: clamp(28px, 6vw, 48px) 24px;
+  border-radius: 28px;
+  background: #050505;
+  color: #ffffff;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.gate .heroStar {
+  position: static;
+  width: 96px;
+  margin: 0 auto;
+}
+
+.gateInput {
+  width: 100%;
+  min-height: 56px;
+  padding: 0 18px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+  font: inherit;
+  font-size: 18px;
+  text-align: center;
+  letter-spacing: 0.08em;
+}
+
+.gateButton {
+  min-height: 56px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--c-orange);
+  color: #000000;
+  font: inherit;
+  font-weight: 800;
+  font-size: 17px;
+  cursor: pointer;
+}
+
+.gateError {
+  color: #ff8a8a;
+  font-weight: 600;
+}
+
+.gateHint {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Кабинет амбассадора */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: clamp(24px, 5vw, 40px);
+  border-radius: 28px;
+  background: #050505;
+  color: #ffffff;
+}
+
+.balance {
+  font-family: var(--font-display-stack);
+  font-weight: 800;
+  font-size: clamp(48px, 10vw, 88px);
+  line-height: 1;
+  color: var(--c-orange);
+}
+
+.cardMuted {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.codeBox {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.code {
+  padding: 10px 16px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.1);
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.copy {
+  min-height: 44px;
+  padding: 0 18px;
+  border: 0;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #000000;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.ledger {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.ledger li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.ledgerWhat small {
+  display: block;
+  color: var(--muted);
+}
+
+.plus {
+  font-weight: 800;
+  color: #1a9a1a;
+  white-space: nowrap;
+}
+
+.minus {
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.rules {
+  max-width: 68ch;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.rules ol {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-left: 22px;
+}

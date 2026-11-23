@@ -1,0 +1,102 @@
+/* Пять звёзд под шапкой на страницах направлений */
+.bar {
+  position: sticky;
+  top: calc(65px + env(safe-area-inset-top, 0px));
+  z-index: 15;
+  background: color-mix(in srgb, var(--paper) 88%, transparent);
+  backdrop-filter: saturate(1.4) blur(14px);
+  -webkit-backdrop-filter: saturate(1.4) blur(14px);
+  border-bottom: 1px solid color-mix(in srgb, var(--line) 70%, transparent);
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  display: flex;
+  gap: 6px;
+  padding-block: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.list::-webkit-scrollbar {
+  display: none;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 38px;
+  padding: 0 14px 0 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  text-decoration: none;
+  transition:
+    border-color 0.2s var(--ease-out),
+    transform 0.2s var(--ease-spring);
+}
+
+.link:hover {
+  border-color: var(--ink);
+  transform: translateY(-1px);
+}
+
+.star {
+  width: 18px;
+  height: 18px;
+  flex: none;
+}
+
+/* Текущая звезда — залита своим цветом */
+.link[aria-current="page"] {
+  border-color: transparent;
+  background: var(--c-orange);
+  color: var(--on-orange);
+}
+
+.link[aria-current="page"][data-star="red"] {
+  background: var(--c-red);
+  color: var(--on-red);
+}
+
+.link[aria-current="page"][data-star="green"] {
+  background: var(--c-green);
+  color: var(--on-green);
+}
+
+.link[aria-current="page"][data-star="pink"] {
+  background: var(--c-pink);
+  color: var(--on-pink);
+}
+
+.link[aria-current="page"][data-star="blue"] {
+  background: var(--c-blue);
+  color: var(--on-blue);
+}
+
+/* На залитой кнопке звезда белая или чёрная, чтобы не слиться с фоном */
+.link[aria-current="page"] .star {
+  filter: brightness(0) invert(1);
+}
+
+.link[aria-current="page"][data-star="orange"] .star,
+.link[aria-current="page"][data-star="green"] .star {
+  filter: brightness(0);
+}
+
+@media (min-width: 900px) {
+  .bar {
+    top: calc(77px + env(safe-area-inset-top, 0px));
+  }
+
+  .list {
+    justify-content: safe center;
+  }
+}

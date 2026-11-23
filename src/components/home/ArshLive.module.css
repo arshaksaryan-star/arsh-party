@@ -1,0 +1,191 @@
+/* Arsh Live: видео-кружок, как в Telegram, и кнопка на канал Арша */
+
+.live {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding-block: clamp(40px, 7vw, 80px);
+  text-align: center;
+}
+
+.circleWrap {
+  position: relative;
+  width: min(68vw, 300px);
+  aspect-ratio: 1;
+  flex: none;
+}
+
+/* Фото вместо видео, пока приветствие не загружено */
+.photo {
+  position: absolute;
+  inset: 5%;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #000000;
+  box-shadow: 0 0 0 6px var(--paper), 0 0 0 9px var(--line);
+}
+
+.photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  max-width: 46ch;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--c-red);
+  animation: pulse 1.6s ease-in-out infinite;
+}
+
+.title {
+  font-weight: 800;
+  font-size: clamp(28px, 4.4vw, 44px);
+  line-height: 1.05;
+}
+
+.lead {
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.45;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: 0 24px;
+  border-radius: 999px;
+  background: #000000;
+  color: #ffffff;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.buttonIcon {
+  width: 20px;
+  height: 20px;
+}
+
+@media (min-width: 820px) {
+  .live {
+    flex-direction: row;
+    justify-content: center;
+    gap: 56px;
+    text-align: left;
+  }
+
+  .text {
+    align-items: flex-start;
+  }
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.35;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dot {
+    animation: none;
+  }
+}
+
+/* Портал в канал: маленький кружок поверх большого, справа снизу */
+.portal {
+  position: absolute;
+  right: -6%;
+  bottom: -2%;
+  width: 38%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #000000;
+  border: 4px solid var(--paper);
+  box-shadow: 0 0 0 3px var(--c-red), 0 10px 24px rgba(0, 0, 0, 0.25);
+  animation: livePulse 2.4s ease-in-out infinite;
+}
+
+.portal video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.portalEmpty {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  color: #ffffff;
+}
+
+.portalIcon {
+  width: 38%;
+  height: 38%;
+}
+
+.portalBadge {
+  position: absolute;
+  left: 50%;
+  bottom: 10%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: var(--c-red);
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.portalBadge .dot {
+  width: 6px;
+  height: 6px;
+  background: #ffffff;
+}
+
+.fresh {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+@keyframes livePulse {
+  50% {
+    box-shadow: 0 0 0 6px color-mix(in srgb, var(--c-red) 35%, transparent), 0 10px 24px rgba(0, 0, 0, 0.25);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portal {
+    animation: none;
+  }
+}

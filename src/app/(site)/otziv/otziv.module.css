@@ -1,0 +1,223 @@
+.page {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+  padding-block: clamp(24px, 5vw, 64px) 0;
+  align-items: start;
+}
+
+.photo {
+  position: relative;
+  margin: 0;
+  aspect-ratio: 922 / 772;
+  max-width: 100%;
+  border-radius: 28px;
+  overflow: hidden;
+  background: #9a9890;
+}
+
+.image {
+  object-fit: cover;
+}
+
+.photoStar {
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  width: clamp(44px, 9vw, 64px);
+  height: auto;
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.3));
+  animation: twinkle 3s ease-in-out infinite;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  min-width: 0;
+}
+
+.title {
+  font-family: var(--font-display-stack);
+  font-weight: 800;
+  font-size: clamp(30px, 6vw, 52px);
+  line-height: 1.05;
+  text-wrap: balance;
+}
+
+.lead {
+  font-size: clamp(16px, 2vw, 19px);
+  color: var(--muted);
+  max-width: 46ch;
+}
+
+.grid {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 72px;
+  padding: 14px 18px;
+  border-radius: 18px;
+  background: #000000;
+  color: #ffffff;
+  text-decoration: none;
+  transition:
+    transform 0.2s var(--ease-out),
+    box-shadow 0.2s var(--ease-out);
+  /* глубокий синий на чёрном не виден — здесь он светлее */
+  --c-blue: #4f86f7;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18), inset 0 0 0 2px var(--c);
+}
+
+.card:active {
+  transform: scale(0.98);
+}
+
+.card:focus-visible {
+  outline: 3px solid var(--c);
+  outline-offset: 3px;
+}
+
+.cardStar {
+  width: 28px;
+  height: 28px;
+  flex: none;
+  transition: transform 0.3s var(--ease-spring);
+}
+
+.card:hover .cardStar {
+  transform: rotate(18deg) scale(1.15);
+}
+
+.cardText {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
+}
+
+.cardName {
+  font-family: var(--font-display-stack);
+  font-weight: 800;
+  font-size: 18px;
+}
+
+.cardCaption {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.6);
+  font-variant-numeric: tabular-nums;
+}
+
+.arrow {
+  font-size: 22px;
+  transition: transform 0.2s var(--ease-out);
+}
+
+.card:hover .arrow {
+  transform: translateX(4px);
+}
+
+.siteBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.siteTitle {
+  font-family: var(--font-display-stack);
+  font-weight: 800;
+  font-size: clamp(20px, 3vw, 26px);
+  line-height: 1.15;
+}
+
+.direct {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 4px;
+  font-size: 15px;
+  color: var(--muted);
+}
+
+.directList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.directLink {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 18px;
+  border: 1.5px solid var(--ink);
+  border-radius: 999px;
+  color: var(--ink);
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.15s var(--ease-out);
+}
+
+.directLink:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.directLink:active {
+  transform: scale(0.96);
+}
+
+@media (min-width: 560px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 960px) {
+  .page {
+    grid-template-columns: minmax(320px, 440px) 1fr;
+    gap: 56px;
+  }
+
+  /* фото остаётся на экране, пока гость заполняет форму */
+  .photo {
+    position: sticky;
+    top: 96px;
+  }
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(12deg) scale(1.1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .photoStar {
+    animation: none;
+  }
+}

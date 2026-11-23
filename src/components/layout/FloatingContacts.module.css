@@ -1,0 +1,112 @@
+.dock {
+  position: fixed;
+  right: calc(16px + env(safe-area-inset-right, 0px));
+  bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition:
+    transform 0.3s var(--ease-out),
+    opacity 0.3s var(--ease-out);
+}
+
+/* уезжает вправо, пока на экране форма заявки */
+.away {
+  transform: translateX(calc(100% + 32px));
+  opacity: 0;
+  pointer-events: none;
+}
+
+.button {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--paper);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);
+  /* backwards: после появления transform снова свободен для :hover */
+  animation: pop 0.35s var(--ease-spring) backwards;
+  transition: transform 0.2s var(--ease-out);
+}
+
+.button:hover {
+  transform: scale(1.08);
+}
+
+.button:active {
+  transform: scale(0.94);
+}
+
+/* звонок — главная кнопка, она красная, как звезда логотипа */
+.main {
+  width: 60px;
+  height: 60px;
+  background: var(--c-red);
+  color: #ffffff;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+}
+
+@media (max-width: 640px) {
+  .dock {
+    gap: 8px;
+  }
+
+  .button {
+    width: 46px;
+    height: 46px;
+  }
+
+  .main {
+    width: 54px;
+    height: 54px;
+  }
+
+  .icon {
+    width: 21px;
+    height: 21px;
+  }
+}
+
+@keyframes pop {
+  from {
+    transform: scale(0.4);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+/* на телефоне прячутся, пока внизу открыта плашка о cookie */
+@media (max-width: 640px) {
+  :global(html[data-cookies="pending"]) .dock {
+    opacity: 0;
+    transform: translateY(24px);
+    pointer-events: none;
+  }
+}
+
+/* над полосой корзины мангала */
+:global(html[data-cart="1"]) .dock {
+  bottom: calc(88px + env(safe-area-inset-bottom, 0px));
+}
+
+/* на главной телефона снизу панель звёзд: остаётся только звонок, над панелью */
+@media (max-width: 899px) {
+  :global(html[data-bar="1"]) .dock {
+    bottom: calc(76px + env(safe-area-inset-bottom, 0px));
+  }
+
+  :global(html[data-bar="1"]) .button:not(.main),
+  :global(html[data-bar="top"]) .button:not(.main) {
+    display: none;
+  }
+}

@@ -1,0 +1,269 @@
+.section {
+  margin-top: clamp(80px, 11vw, 140px);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+}
+
+.portrait {
+  position: relative;
+  margin: 0;
+  aspect-ratio: 1;
+  max-width: 100%;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: #000000;
+}
+
+.portraitImage {
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(1.06);
+  transition:
+    opacity 0.7s ease,
+    transform 7s linear;
+}
+
+.portraitImage[data-active="true"] {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.mono {
+  filter: grayscale(1) contrast(1.08);
+}
+
+/* Полоски, как в сторис: какой слайд и сколько осталось */
+.bars {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  top: 14px;
+  display: flex;
+  gap: 4px;
+  z-index: 2;
+}
+
+.bar {
+  flex: 1;
+  height: 3px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.35);
+  overflow: hidden;
+}
+
+.barFill {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: #ffffff;
+}
+
+.barFill[data-state="done"] {
+  width: 100%;
+}
+
+.barFill[data-state="now"] {
+  animation: fill 7s linear forwards;
+}
+
+.tap {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.tapPrev {
+  left: 0;
+  width: 35%;
+}
+
+.tapNext {
+  right: 0;
+  width: 65%;
+}
+
+.slideText {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-height: 15em;
+  animation: rise 0.45s var(--ease-out);
+}
+
+.dots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.dot {
+  min-height: 34px;
+  padding: 0 12px;
+  border: 1.5px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.dot[aria-selected="true"] {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+}
+
+@keyframes fill {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portraitImage,
+  .slideText {
+    transition: none;
+    animation: none;
+    transform: none;
+  }
+
+  .barFill[data-state="now"] {
+    animation: none;
+    width: 100%;
+  }
+}
+
+.caption {
+  position: absolute;
+  z-index: 2;
+  pointer-events: none;
+  left: 18px;
+  bottom: 18px;
+  font-family: var(--font-display-stack);
+  font-weight: 800;
+  font-size: clamp(28px, 5vw, 44px);
+  text-transform: uppercase;
+  /* плашка поверх фото всегда чёрная, даже в тёмной теме */
+  --ink: #000000;
+  --paper: #ffffff;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+
+.eyebrow {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.heading {
+  font-weight: 800;
+  font-size: clamp(28px, 4.4vw, 48px);
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+}
+
+.accent {
+  display: block;
+  color: var(--c-red);
+}
+
+.paragraph {
+  font-size: 17px;
+  max-width: 56ch;
+}
+
+.paragraph strong {
+  font-weight: 600;
+}
+
+.stats {
+  margin: 12px 0 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 2px solid var(--ink);
+}
+
+.stat {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+  gap: 4px;
+  padding: 16px 12px 0 0;
+}
+
+.statValue {
+  margin: 0;
+  font-family: var(--font-display-stack);
+  font-weight: 800;
+  font-size: clamp(26px, 4vw, 40px);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.statLabel {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.3;
+}
+
+.moments {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.moment {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #000000;
+}
+
+.momentImage {
+  object-fit: cover;
+  transition: transform 0.35s var(--ease-out);
+}
+
+.moment:hover .momentImage {
+  transform: scale(1.06) rotate(-1deg);
+}
+
+@media (min-width: 900px) {
+  .grid {
+    grid-template-columns: 5fr 6fr;
+    gap: 56px;
+    align-items: center;
+  }
+}

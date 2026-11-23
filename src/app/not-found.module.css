@@ -1,0 +1,77 @@
+.wrap {
+  padding-top: clamp(56px, 12vw, 140px);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.star {
+  width: 72px;
+  height: 72px;
+  animation: drift 3.2s ease-in-out infinite alternate;
+}
+
+.title {
+  font-weight: 800;
+  font-size: clamp(64px, 16vw, 160px);
+  line-height: 1;
+}
+
+.text {
+  font-size: 18px;
+  color: var(--muted);
+  max-width: 38ch;
+}
+
+@keyframes drift {
+  from {
+    transform: translateY(0) rotate(-8deg);
+  }
+  to {
+    transform: translateY(-10px) rotate(10deg);
+  }
+}
+
+.stars {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-bottom: clamp(48px, 8vw, 96px);
+}
+
+.starsTitle {
+  color: var(--muted);
+}
+
+.starsList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.starLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 16px 0 10px;
+  border: 1.5px solid var(--line);
+  border-radius: 999px;
+  color: var(--ink);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.starLink:hover {
+  border-color: var(--ink);
+}
+
+.starIcon {
+  width: 22px;
+  height: 22px;
+  flex: none;
+}

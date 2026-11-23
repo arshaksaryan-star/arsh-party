@@ -1,0 +1,24 @@
+.ribbon {
+  display: inline-block;
+  max-width: 100%;
+  background: var(--accent);
+  color: var(--on-accent);
+  /* от 19px жирным: белый на красном проходит порог контраста для крупного текста */
+  font: 700 19px/1.25 var(--font-body-stack);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-wrap: balance;
+  padding: 0.42em 0.85em 0.46em;
+  transform: rotate(-2deg);
+  transform-origin: left center;
+  transition:
+    background-color 0.3s var(--ease-out),
+    color 0.3s var(--ease-out);
+}
+
+@media (min-width: 900px) {
+  .ribbon {
+    font-size: 21px;
+    letter-spacing: 0.09em;
+  }
+}

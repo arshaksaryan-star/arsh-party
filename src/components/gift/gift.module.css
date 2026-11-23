@@ -1,0 +1,467 @@
+/* Подарочные сертификаты: выбор, форма, карточка сертификата */
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  padding-top: clamp(24px, 5vw, 56px);
+  padding-bottom: clamp(56px, 9vw, 112px);
+}
+
+.eyebrow {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.title {
+  font-weight: 800;
+  font-size: clamp(34px, 6.4vw, 64px);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+}
+
+.lead {
+  color: var(--muted);
+  font-size: 18px;
+  max-width: 60ch;
+}
+
+.shop {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.offers {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.offers li:last-child {
+  grid-column: 1 / -1;
+}
+
+.offer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  padding: 16px;
+  border: 2px solid var(--line);
+  border-radius: 20px;
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.15s ease, transform 0.15s var(--ease-out);
+}
+
+.offer[aria-checked="true"] {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 9%, var(--paper));
+  transform: translateY(-2px);
+}
+
+.offerStar {
+  width: 28px;
+  height: 28px;
+}
+
+.offerAmount {
+  font-family: var(--font-display-stack);
+  font-weight: 800;
+  font-size: clamp(20px, 4vw, 28px);
+  font-variant-numeric: tabular-nums;
+}
+
+.offerTitle {
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.offerText {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.3;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: clamp(18px, 3vw, 28px);
+  border-radius: 24px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+}
+
+.formTitle {
+  font-size: 18px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.row > * {
+  flex: 1 1 240px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.input {
+  width: 100%;
+  min-height: 50px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+  font-size: 16px;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--ink);
+}
+
+.input[aria-invalid="true"] {
+  border-color: var(--c-red);
+}
+
+.textarea {
+  min-height: 84px;
+  resize: vertical;
+}
+
+.hidden {
+  position: absolute;
+  left: -9999px;
+}
+
+.consent {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.consent input {
+  width: 20px;
+  height: 20px;
+  flex: none;
+  margin-top: 1px;
+  accent-color: #000000;
+}
+
+.consent a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+.error {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--c-red);
+}
+
+.serverError {
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--c-red) 10%, var(--paper));
+  font-weight: 600;
+}
+
+.submit,
+.primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 58px;
+  padding: 0 24px;
+  border: 0;
+  border-radius: 999px;
+  background: #000000;
+  color: #ffffff;
+  font: inherit;
+  font-size: 17px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.submit:disabled {
+  opacity: 0.5;
+}
+
+.footnote {
+  font-size: 13px;
+  color: var(--muted);
+  text-align: center;
+}
+
+.done {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 32px 24px;
+  border-radius: 26px;
+  background: #000000;
+  color: #ffffff;
+  text-align: center;
+}
+
+.doneStar {
+  width: 56px;
+  height: 56px;
+}
+
+.doneTitle {
+  font-family: var(--font-display-stack);
+  font-weight: 800;
+  font-size: 24px;
+}
+
+.doneText {
+  color: rgba(255, 255, 255, 0.78);
+  max-width: 44ch;
+}
+
+.done .primary {
+  background: #ffffff;
+  color: #000000;
+}
+
+.faq {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 760px;
+}
+
+.faq details {
+  border-bottom: 1px solid var(--line);
+  padding: 12px 0;
+}
+
+.faq summary {
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.faq p {
+  margin-top: 8px;
+  color: var(--muted);
+}
+
+/* ───── Карточка сертификата /sertifikat/КОД ───── */
+
+.cert {
+  position: relative;
+  width: min(100%, 560px);
+  aspect-ratio: 1.6;
+  margin: 0 auto;
+  padding: clamp(18px, 4vw, 32px);
+  border-radius: 26px;
+  background: #050505;
+  color: #ffffff;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3);
+}
+
+.certGlow {
+  position: absolute;
+  right: -18%;
+  top: -30%;
+  width: 70%;
+  height: 120%;
+  color: var(--accent);
+  opacity: 0.9;
+  transform: rotate(14deg);
+}
+
+.certTop,
+.certBottom {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.certBrand {
+  font-family: var(--font-display-stack);
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.certAmount {
+  position: relative;
+  font-family: var(--font-display-stack);
+  font-weight: 800;
+  font-size: clamp(36px, 9vw, 64px);
+  line-height: 1;
+}
+
+.certTitle {
+  position: relative;
+  font-weight: 700;
+  font-size: clamp(15px, 3vw, 19px);
+}
+
+.certCode {
+  align-self: flex-end;
+  white-space: nowrap;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: clamp(12px, 3.2vw, 18px);
+  letter-spacing: 0.08em;
+}
+
+.certMeta {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
+  text-align: right;
+}
+
+.certInfo {
+  width: min(100%, 560px);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.certMessage {
+  padding: 16px 18px;
+  border-radius: 18px;
+  background: var(--paper-2);
+  font-size: 17px;
+  line-height: 1.45;
+}
+
+.certStatus {
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--accent) 12%, var(--paper));
+  font-weight: 600;
+}
+
+.certActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.secondary {
+  display: inline-flex;
+  align-items: center;
+  min-height: 50px;
+  padding: 0 20px;
+  border: 1.5px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+@media (min-width: 900px) {
+  .offers {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  .offers li:last-child {
+    grid-column: auto;
+  }
+
+  .shop {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+}
+
+@media print {
+  .certActions,
+  .noPrint {
+    display: none !important;
+  }
+
+  .cert {
+    box-shadow: none;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
+
+.certGrowth {
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px dashed color-mix(in srgb, var(--accent) 60%, transparent);
+  line-height: 1.5;
+}
+
+/* Куда прислать чек */
+.receipt {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.receiptOptions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.receiptOption {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 0 18px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.receiptOption[data-active="true"] {
+  border-color: var(--ink);
+  background: var(--paper-2);
+}
+
+.receiptOption input {
+  accent-color: var(--ink);
+}

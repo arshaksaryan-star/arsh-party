@@ -1,0 +1,65 @@
+.nav {
+  min-width: 0;
+}
+
+.list {
+  min-width: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 2px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.list::-webkit-scrollbar {
+  display: none;
+}
+
+.link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 12px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 600;
+  white-space: nowrap;
+  text-decoration: none;
+  color: var(--muted);
+  transition:
+    color 0.2s var(--ease-out),
+    background-color 0.2s var(--ease-out);
+}
+
+.link:hover {
+  color: var(--ink);
+  background: var(--paper-2);
+}
+
+/* текущий блок: чёрный текст и звезда-точка цвета выбранного направления */
+.link[aria-current="true"],
+.link[aria-current="page"] {
+  color: var(--ink);
+}
+
+.link::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 5px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--page-accent, var(--c-red));
+  transform: translateX(-50%) scale(0);
+  transition: transform 0.25s var(--ease-spring);
+}
+
+.link[aria-current="true"]::after,
+.link[aria-current="page"]::after {
+  transform: translateX(-50%) scale(1);
+}

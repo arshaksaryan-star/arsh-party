@@ -1,0 +1,75 @@
+.section {
+  margin-top: clamp(72px, 10vw, 128px);
+}
+
+.heading {
+  font-weight: 800;
+  font-size: clamp(28px, 4.4vw, 48px);
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+}
+
+.steps {
+  list-style: none;
+  margin: 32px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+
+.step {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  grid-template-rows: auto auto;
+  column-gap: 12px;
+  row-gap: 4px;
+  padding: 22px 0;
+  border-top: 2px solid var(--ink);
+}
+
+.number {
+  grid-row: span 2;
+  font-family: var(--font-display-stack);
+  font-weight: 800;
+  font-size: 40px;
+  line-height: 1;
+  color: var(--accent);
+}
+
+.title {
+  font-family: var(--font-body-stack);
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.3;
+}
+
+.text {
+  color: var(--muted);
+  font-size: 16px;
+}
+
+@media (min-width: 820px) {
+  .steps {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+
+  .step {
+    grid-template-columns: 1fr;
+    padding-top: 24px;
+  }
+
+  .number {
+    grid-row: auto;
+    font-size: 56px;
+    margin-bottom: 12px;
+  }
+}
+
+/* На телефоне блок убран — главная короче (владелец, 15.11.2026) */
+@media (max-width: 899px) {
+  .section {
+    display: none;
+  }
+}

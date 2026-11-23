@@ -1,0 +1,709 @@
+/* Праздники: тёмное небо, чёрные карточки-открытки, сторис на весь экран. */
+
+.hero,
+.card,
+.overlay,
+.blockCard {
+  /* цвета звёзд на тёмном: глубокий синий светлее, как в подвале */
+  --sky-orange: #ff6600;
+  --sky-red: #ff0000;
+  --sky-green: #33cc33;
+  --sky-pink: #ff0066;
+  --sky-blue: #4f86f7;
+}
+
+/* ───── Первый экран: небо ───── */
+
+.hero {
+  background: #050505;
+  color: #ffffff;
+  color-scheme: dark;
+  overflow: hidden;
+}
+
+.heroInner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  padding-block: clamp(32px, 6vw, 72px);
+  align-items: center;
+}
+
+.heroText {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+
+.eyebrow {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.title {
+  font-family: var(--font-display-stack);
+  font-weight: 800;
+  font-size: clamp(32px, 6vw, 58px);
+  line-height: 1.02;
+  text-wrap: balance;
+}
+
+.lead {
+  font-size: clamp(16px, 2vw, 19px);
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.75);
+  max-width: 46ch;
+}
+
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.primary,
+.ghost {
+  display: inline-flex;
+  align-items: center;
+  min-height: 52px;
+  padding: 0 24px;
+  border-radius: 999px;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.primary {
+  border: 0;
+  background: var(--c-red);
+  color: #ffffff;
+}
+
+.ghost {
+  border: 1.5px solid rgba(255, 255, 255, 0.5);
+  color: #ffffff;
+}
+
+.sky {
+  position: relative;
+  height: clamp(280px, 40vw, 400px);
+  border-radius: 28px;
+  background: radial-gradient(circle at 30% 30%, #1b1b1b 0%, #050505 72%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.skyItem {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 4px;
+  border: 0;
+  background: none;
+  color: #ffffff;
+  font: inherit;
+  cursor: pointer;
+  animation: twinkle 3.4s ease-in-out infinite;
+}
+
+button.skyItem:hover .skyStar,
+button.skyItem:focus-visible .skyStar {
+  transform: scale(1.25) rotate(14deg);
+}
+
+button.skyItem:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+  border-radius: 10px;
+}
+
+.skyStar {
+  transition: transform 0.3s var(--ease-spring);
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.15));
+}
+
+.skyLabel {
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.65);
+}
+
+/* ───── Список ───── */
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  margin-top: clamp(40px, 6vw, 64px);
+}
+
+.listHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 8px 24px;
+}
+
+.heading {
+  font-weight: 800;
+  font-size: clamp(26px, 4vw, 40px);
+  line-height: 1.05;
+}
+
+.count {
+  color: var(--muted);
+}
+
+.chips {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: none;
+}
+
+.chip {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 16px;
+  border-radius: 999px;
+  border: 1.5px solid var(--line);
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.chip[aria-pressed="true"] {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+
+.grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+}
+
+.card {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 26px;
+  overflow: hidden;
+  background: #000000;
+  color: #ffffff;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: transform 0.2s var(--ease-out);
+}
+
+.card:hover {
+  transform: translateY(-3px);
+}
+
+.card:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 3px;
+}
+
+.cardMedia {
+  position: relative;
+  display: block;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #1a1a1a;
+}
+
+.cardImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s var(--ease-out);
+}
+
+.card:hover .cardImg {
+  transform: scale(1.05);
+}
+
+.cardEmpty {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 30% 30%, #262626, #0a0a0a);
+}
+
+.badge {
+  position: absolute;
+  left: 14px;
+  top: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px 6px 8px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.72);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.videoBadge {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #000000;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.videoBadgeTop {
+  top: 16px;
+  bottom: auto;
+  z-index: 1;
+}
+
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 18px 20px 22px;
+}
+
+.cardMeta {
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.cardTitle {
+  font-family: var(--font-display-stack);
+  font-weight: 800;
+  font-size: 20px;
+  line-height: 1.15;
+}
+
+.cardQuote {
+  font-size: 15px;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.78);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ───── Сторис ───── */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  background: rgba(0, 0, 0, 0.88);
+  animation: fade 0.2s ease;
+}
+
+.story {
+  position: relative;
+  width: min(100vw, calc(100dvh * 9 / 16), 480px);
+  height: min(100dvh, 860px);
+  overflow: hidden;
+  background: #000000;
+  color: #ffffff;
+  outline: none;
+}
+
+.storyMedia,
+.storyVideo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.storyMedia {
+  object-fit: cover;
+}
+
+.storyVideo {
+  top: 110px;
+  height: calc(100% - 230px);
+  background: #000000;
+}
+
+.storyQuote {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  padding: 120px 32px 200px;
+  background: var(--story);
+  color: var(--on-story);
+}
+
+.storyQuoteText {
+  font-family: var(--font-display-stack);
+  font-weight: 800;
+  font-size: clamp(20px, 6vw, 26px);
+  line-height: 1.2;
+}
+
+.storyQuoteAuthor {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.storyShadeTop,
+.storyShadeBottom {
+  position: absolute;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+}
+
+.storyShadeTop {
+  top: 0;
+  height: 150px;
+  background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0));
+}
+
+.storyShadeBottom {
+  bottom: 0;
+  height: 260px;
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.85));
+}
+
+.storyTop {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  top: calc(12px + env(safe-area-inset-top, 0px));
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.bars {
+  display: flex;
+  gap: 4px;
+}
+
+.bar {
+  flex: 1;
+  height: 3px;
+  border-radius: 3px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.barFill {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: #ffffff;
+}
+
+.barRun {
+  animation: grow 5s linear forwards;
+}
+
+.storyHead {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.storyHeadText {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  line-height: 1.25;
+}
+
+.storyHeadText b {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.storyHeadText span {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.iconButton {
+  width: 44px;
+  height: 44px;
+  flex: none;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: #ffffff;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.iconButton:focus-visible,
+.share:focus-visible,
+.want:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+}
+
+.tap {
+  position: absolute;
+  top: 110px;
+  bottom: 140px;
+  z-index: 2;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.tap:disabled {
+  cursor: default;
+}
+
+.tapPrev {
+  left: 0;
+  width: 35%;
+}
+
+.tapNext {
+  right: 0;
+  width: 65%;
+}
+
+/* на видео зоны листания — узкие полоски по краям, плеер остаётся нажимаемым */
+.tapNarrow {
+  width: 14%;
+}
+
+.storyBottom {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.storySummary {
+  font-size: 15px;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.storyActions {
+  display: flex;
+  gap: 8px;
+}
+
+.want {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  min-height: 54px;
+  border-radius: 999px;
+  background: var(--story);
+  color: var(--on-story);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.share {
+  width: 54px;
+  height: 54px;
+  flex: none;
+  border: 1.5px solid rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  background: transparent;
+  color: #ffffff;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.copied {
+  font-size: 13px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* ───── Блок «Как это было» на странице звезды ───── */
+
+.block {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+.blockCard {
+  position: relative;
+  display: block;
+  min-height: 240px;
+  border-radius: 24px;
+  overflow: hidden;
+  background: #111111;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.blockCard img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s var(--ease-out);
+}
+
+.blockCard:hover img {
+  transform: scale(1.05);
+}
+
+.blockCaption {
+  position: absolute;
+  inset: auto 0 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 20px;
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.82));
+}
+
+.blockCaption span {
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.blockCaption b {
+  font-family: var(--font-display-stack);
+  font-size: 19px;
+  line-height: 1.15;
+}
+
+/* на телефоне подписи короче, чтобы соседние звёзды не сталкивались */
+@media (max-width: 639px) {
+  .skyLabel {
+    max-width: 92px;
+    font-size: 11px;
+    padding: 2px 6px;
+  }
+}
+
+@media (min-width: 640px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .block {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .block > :first-child:nth-last-child(odd) {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (min-width: 960px) {
+  .heroInner {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+    gap: 48px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .block {
+    grid-template-columns: 1.4fr 1fr 1fr;
+    min-height: 380px;
+  }
+
+  .block[data-count="2"] {
+    grid-template-columns: 1.3fr 1fr;
+  }
+
+  .block[data-count="1"] {
+    grid-template-columns: 1fr;
+    min-height: 420px;
+  }
+
+  .block > :first-child:nth-last-child(odd) {
+    grid-column: auto;
+  }
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.35);
+  }
+}
+
+@keyframes grow {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skyItem,
+  .overlay {
+    animation: none;
+  }
+}

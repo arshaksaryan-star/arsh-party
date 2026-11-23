@@ -1,0 +1,222 @@
+/* Подвал всегда чёрный, как плашка логотипа, в светлой и тёмной теме. */
+.footer {
+  --ink: #000000;
+  --paper: #ffffff;
+  background: #000000;
+  color: #ffffff;
+  color-scheme: dark;
+  padding-top: 56px;
+  padding-bottom: max(24px, env(safe-area-inset-bottom, 0px));
+  margin-top: 96px;
+  /* глубокий синий на чёрном не виден — здесь он светлее */
+  --c-blue: #4f86f7;
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  justify-items: center;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  text-align: center;
+  max-width: 360px;
+  /* на телефоне и планшете логотип идёт первым */
+  order: -1;
+}
+
+.logo {
+  width: 168px;
+  height: auto;
+}
+
+.slogan {
+  font-family: var(--font-display-stack);
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 0.02em;
+  color: color-mix(in srgb, var(--paper) 70%, transparent);
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+  width: 100%;
+}
+
+.colTitle {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--paper) 55%, transparent);
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 40px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: transform 0.2s var(--ease-out);
+}
+
+.link:hover {
+  transform: translateX(4px);
+}
+
+.star {
+  width: 18px;
+  height: 18px;
+  flex: none;
+}
+
+.note {
+  color: color-mix(in srgb, var(--paper) 70%, transparent);
+  min-height: 32px;
+  display: flex;
+  align-items: center;
+}
+
+.bottom {
+  margin-top: 48px;
+  font-size: 14px;
+  color: color-mix(in srgb, var(--paper) 55%, transparent);
+  text-align: center;
+}
+
+/* линия только по ширине текста, без боковых полей контейнера */
+.bottom > span {
+  display: block;
+  padding-top: 20px;
+  border-top: 1px solid color-mix(in srgb, var(--paper) 18%, transparent);
+}
+
+.footnote {
+  display: block;
+  margin-top: 6px;
+  font-size: 12px;
+  scroll-margin-bottom: 40px;
+}
+
+.footnoteLink {
+  color: var(--paper);
+  font-weight: 600;
+}
+
+.cookieButton {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 6px 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  font-size: 13px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.cookieButton:hover {
+  color: #ffffff;
+}
+
+/* адрес и часы под логотипом */
+.place {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 14px;
+  line-height: 1.45;
+  color: color-mix(in srgb, var(--paper) 62%, transparent);
+}
+
+/* телефон и планшет: логотип сверху, под ним две колонки рядом */
+@media (min-width: 560px) {
+  .inner {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+
+  .brand {
+    grid-column: 1 / -1;
+  }
+}
+
+/* компьютер: направления | логотип | связь, боковые колонки одной высоты */
+@media (min-width: 960px) {
+  .inner {
+    grid-template-columns: 1fr minmax(260px, 340px) 1fr;
+    align-items: stretch;
+    gap: 48px;
+  }
+
+  .colLeft {
+    order: 1;
+    justify-self: start;
+  }
+
+  .brand {
+    order: 2;
+    grid-column: auto;
+    justify-content: center;
+  }
+
+  .colRight {
+    order: 3;
+    justify-self: end;
+    align-items: flex-end;
+    text-align: right;
+  }
+
+  .colRight .link:hover {
+    transform: translateX(-4px);
+  }
+
+  .colLeft,
+  .colRight {
+    width: auto;
+  }
+}
+
+/* документы и настройки cookie — одной строкой под копирайтом */
+.legal {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 4px 18px;
+  margin-top: 10px;
+  font-size: 13px;
+}
+
+.legal a {
+  color: inherit;
+  text-underline-offset: 3px;
+}
+
+.legal a:hover {
+  color: #ffffff;
+}
+
+.legal .cookieButton {
+  margin-top: 0;
+}
