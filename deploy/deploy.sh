@@ -1,4 +1,4 @@
-grep -v -E '^\s*(SUPABASE_|STORAGE_DIR)' .env.local > "$tmp"#!/usr/bin/env bash
+#!/usr/bin/env bash
 # Публикация сайта с Mac на сервер одной командой:
 #   ./deploy/deploy.sh
 # Отправляет код (без node_modules и .next), настройки из .env.local (кроме ключей Supabase),
