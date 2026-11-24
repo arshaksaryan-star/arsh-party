@@ -3,6 +3,7 @@
 /** Только 10 цифр после +7. Вставили «8 900…» или «+7 900…» — лишняя первая цифра отрезается. */
 export function phoneDigits(raw: string): string {
   let digits = raw.replace(/\D/g, "");
+  if (digits.length === 1 && (digits === "7" || digits === "8")) return "";
   if (digits.length === 11 && (digits.startsWith("7") || digits.startsWith("8"))) digits = digits.slice(1);
   return digits.slice(0, 10);
 }
